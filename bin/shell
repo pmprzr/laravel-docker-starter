@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Interaktive Shell im PHP-Container (z. B. für "php artisan tinker")
+export MSYS_NO_PATHCONV=1
+cd "$(dirname "$0")/.."
+
+# Git Bash (mintty) braucht winpty, damit das Terminal funktioniert
+if command -v winpty >/dev/null 2>&1 && [[ "${OSTYPE:-}" == msys* ]]; then
+  exec winpty docker compose exec app bash
+fi
+exec docker compose exec app bash

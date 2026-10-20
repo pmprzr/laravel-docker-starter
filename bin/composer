@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Beispiel: bin/composer require laravel/breeze --dev
+export MSYS_NO_PATHCONV=1
+cd "$(dirname "$0")/.."
+exec docker compose exec -T app composer "$@"
